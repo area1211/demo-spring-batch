@@ -1,5 +1,6 @@
 package com.example.demospringbatch.job;
 
+import com.example.demospringbatch.job.tasklet.SimpleJobTasklet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -24,6 +25,7 @@ public class SimpleJobConfiguration {
         return jobBuilderFactory.get("simpleJob") // simpleJob 이라는 이름으로 Batch Job을 생성한다.
                 .start(simpleStep1(null)) // Spring Batch에서 Job은 하나의 배치 작업 단위를 말한다.
                 .next(simpleStep2(null))
+                .next(simpleStep3())
                 .build();
     }
 
@@ -49,6 +51,16 @@ public class SimpleJobConfiguration {
                     log.info(">>>>> requestDate = {}", requestDate);
                     return RepeatStatus.FINISHED;
                 })
+                .build();
+    }
+
+
+    private final SimpleJobTasklet tasklet1;
+//    @Bean
+//    @JobScope
+    public Step simpleStep3() {
+        return stepBuilderFactory.get("simpleStep3") // BatchStep 생성
+                .tasklet(tasklet1)
                 .build();
     }
 }
