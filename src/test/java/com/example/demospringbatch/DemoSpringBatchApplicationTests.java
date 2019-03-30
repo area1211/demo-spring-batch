@@ -19,8 +19,8 @@ import java.io.IOException;
 public class DemoSpringBatchApplicationTests {
 
     final static String NAVER_URL = "https://www.naver.com";
-    final static String ACCOUNT_ID = "inojng";
-    final static String ACCOUNT_PASSWORD = "ruaend2sh";
+    final static String ACCOUNT_ID = "1234";
+    final static String ACCOUNT_PASSWORD = "1234";
 
     @Before
     public void before() {
